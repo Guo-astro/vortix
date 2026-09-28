@@ -867,7 +867,7 @@ pub mod help {
                 ("i", "Import profile (file, dir, URL)"),
                 ("K", "Cycle kill switch mode"),
                 ("y", "Copy VPN IP to clipboard"),
-                ("Tab/S-Tab", "Next / Previous panel"),
+                ("Tab/S-Tab,l/h", "Next / Previous panel"),
                 ("F1-F5", "Jump to panel (Prof/Det/Chart/Sec/Log)"),
                 ("z", "Zoom focused panel"),
                 ("f", "Flip Chart / Details / Security panel"),
@@ -1357,6 +1357,16 @@ pub mod help {
                 .map(|(_, bindings)| *bindings)
                 .expect("Global help section must exist");
             assert!(global.contains(&("p", "Switch color theme")));
+        }
+
+        #[test]
+        fn panel_nav_help_mentions_h_and_l() {
+            let global = HELP_TEXT
+                .iter()
+                .find(|(section, _)| *section == "Global")
+                .map(|(_, bindings)| *bindings)
+                .expect("Global help section must exist");
+            assert!(global.contains(&("Tab/S-Tab,l/h", "Next / Previous panel")));
         }
 
         #[test]
